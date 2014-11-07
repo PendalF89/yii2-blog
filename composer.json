@@ -9,5 +9,6 @@
         }
     ],
     "minimum-stability": "stable",
+    "version": "master",
     "require": {}
 }
