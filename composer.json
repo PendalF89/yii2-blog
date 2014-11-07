@@ -1,0 +1,13 @@
+{
+    "name": "PendalF/yii2-blog",
+    "description": "Yii2 blog module",
+    "license": "GNU GPLv2",
+    "authors": [
+        {
+            "name": "PendalF",
+            "email": "pendalf@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
