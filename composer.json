@@ -8,6 +8,6 @@
             "email": "pendalf@mail.ru"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {}
 }
