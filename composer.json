@@ -9,5 +9,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "pendalf89\\blog\\": ""
+        }
+    }
 }
