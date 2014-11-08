@@ -3,21 +3,19 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m141107_230213_create_blog_category_table extends Migration
+class m141108_110957_create_blog_type_table extends Migration
 {
     public function up()
     {
-        $this->createTable('blog_category', [
+        $this->createTable('blog_type', [
             'id' => 'pk',
-            'parent_id' => Schema::TYPE_INTEGER,
             'title' => Schema::TYPE_STRING . ' NOT NULL',
             'alias' => Schema::TYPE_STRING . ' NOT NULL',
-            'position' => Schema::TYPE_INTEGER,
         ]);
     }
 
     public function down()
     {
-        $this->dropTable('blog_category');
+        $this->dropTable('blog_type');
     }
 }
