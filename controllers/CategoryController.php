@@ -111,7 +111,11 @@ class CategoryController extends Controller
     public function actionTree()
     {
         $models = Category::find()->orderBy('position DESC, title')->all();
-        return $this->render('tree', ['models' => $models]);
+        $model = new Category();
+        return $this->render('tree', [
+            'model' => $model,
+            'models' => $models,
+        ]);
     }
 
     /**
