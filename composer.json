@@ -13,7 +13,8 @@
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
         "thiagotalma/yii2-jstree": "*",
-        "maybeworks/yii2-tinymce": "*"
+        "maybeworks/yii2-tinymce": "*",
+        "linchpinstudios/yii2-filemanager": "*"
     },
     "autoload": {
         "psr-4": {
