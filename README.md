@@ -2,12 +2,24 @@ yii2-blog
 =========
 
 Yii2 blog module
-# Install
+Installation
+------------
 
-Install module via composer
-```sh
-  php composer require "pendalf89/yii2-blog": "*"
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
 ```
+php composer.phar require --prefer-dist pendalf89/yii2-blog "*"
+```
+
+or add
+
+```
+"pendalf89/yii2-blog": "*"
+```
+
+to the require section of your `composer.json` file.
 
 Apply migration
 ```sh
