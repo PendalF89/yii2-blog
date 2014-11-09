@@ -2,6 +2,7 @@
 
 namespace pendalf89\blog\controllers;
 
+use pendalf89\blog\models\Type;
 use Yii;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\models\PostSearch;
@@ -19,11 +20,13 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
+        $model = new Post();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 
@@ -47,10 +50,16 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
+        $model->load(Yii::$app->request->get());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            if ($model->type->show_category) {
+                $model->setScenario('required_category');
+            }
+
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -70,6 +79,11 @@ class PostController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            if ($model->type->show_category) {
+                $model->setScenario('required_category');
+            }
+
             return $this->render('update', [
                 'model' => $model,
             ]);

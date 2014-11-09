@@ -14,12 +14,12 @@ use pendalf89\blog\models\Category;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'role' => 'translit-input']) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'class' => 'form-control translit-input']) ?>
 
     <?= $form->field($model, 'parent_id')->dropDownList(Category::getList($model->id),
         ['prompt' => Module::t('main', 'Select parent category')]) ?>
 
-    <?= $form->field($model, 'alias')->textInput(['maxlength' => 255, 'role' => 'translit-output']) ?>
+    <?= $form->field($model, 'alias')->textInput(['maxlength' => 255, 'class' => 'form-control translit-output']) ?>
 
     <?= $form->field($model, 'position')
         ->textInput()

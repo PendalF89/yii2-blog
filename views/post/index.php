@@ -2,24 +2,27 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\ActiveForm;
+use pendalf89\blog\Module;
+use pendalf89\blog\models\Post;
+use pendalf89\blog\models\Type;
+use pendalf89\blog\models\Category;
+use pendalf89\blog\helpers\Helper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel pendalf89\blog\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Posts');
+$this->title = Module::t('main', 'Posts');
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create {modelClass}', [
-    'modelClass' => 'Post',
-]), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?= $this->render('_new', ['model' => $model]) ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,24 +32,35 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'category_id',
                 'value' => function($model) {
-                        return $model->category->title;
-                    }
+                        return !empty($model->category) ? $model->category->title : null;
+                    },
+                'filter' => Category::getList(),
             ],
             [
                 'attribute' => 'type_id',
                 'value' => function($model) {
                         return $model->type->title;
-                    }
+                    },
+                'filter' => Type::getList(),
             ],
-             'alias',
-             'meta_description:ntext',
-             'preview:ntext',
-             'content:ntext',
+            [
+                'attribute' => 'meta_description',
+                'format' => 'html',
+                'value' => function($model) {
+                        $metaDecriptionStatus = !empty($model->meta_description)
+                            ? 1 : 0;
+                        return Helper::booleanIconChoiceArray()[$metaDecriptionStatus];
+                    },
+                'filter' => ['yes' => Yii::t('yii', 'Yes'), 'no' => Yii::t('yii', 'No')],
+            ],
              'views',
-             'publish_status',
-             'thumbnail:ntext',
-             'created_at',
-             'updated_at',
+            [
+                'attribute' => 'publish_status',
+                'value' => function($model) {
+                        return $model->getStatus();
+                    },
+                'filter' => Post::getStatuses(),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

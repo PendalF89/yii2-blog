@@ -74,6 +74,7 @@ class Category extends \yii\db\ActiveRecord
      * Gets a list of all the models.
      * Can be used as array in yii\widgets\ActiveForm dropDownList().
      *
+     * @param int $excludeId ignoring model with this id
      * @return array list of all models.
      */
     public static function getList($excludeId = 0)

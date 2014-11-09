@@ -12,7 +12,8 @@
     "require": {
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
-        "thiagotalma/yii2-jstree": "*"
+        "thiagotalma/yii2-jstree": "*",
+        "maybeworks/yii2-tinymce": "*"
     },
     "autoload": {
         "psr-4": {

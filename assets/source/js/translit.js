@@ -47,8 +47,8 @@ $(document).ready(function() {
     }
 
     // Подставляем значения в поле
-    $('[role="translit-input"]').on('keyup change', function() {
+    $(".translit-input").on("keyup change", function() {
         var transilted = translit($(this).val());
-        $('[role="translit-output"]').val(transilted);
+        $(".translit-output").val(transilted);
     });
 });

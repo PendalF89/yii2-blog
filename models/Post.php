@@ -4,6 +4,8 @@ namespace pendalf89\blog\models;
 
 use Yii;
 use pendalf89\blog\Module;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "blog_post".
@@ -26,8 +28,11 @@ use pendalf89\blog\Module;
  * @property Category $category
  * @property Type $type
  */
-class Post extends \yii\db\ActiveRecord
+class Post extends ActiveRecord
 {
+    const STATUS_PUBLISHED = 1;
+    const STATUS_DRAFT = 0;
+
     /**
      * @inheritdoc
      */
@@ -42,10 +47,11 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'type_id', 'views', 'publish_status', 'created_at', 'updated_at'], 'integer'],
-            [['type_id', 'title', 'title_seo', 'alias', 'preview', 'content', 'created_at'], 'required'],
+            [['category_id', 'type_id', 'publish_status', 'created_at', 'updated_at'], 'integer'],
+            [['type_id', 'title', 'title_seo', 'alias', 'preview', 'content'], 'required'],
             [['meta_description', 'preview', 'content', 'thumbnail'], 'string'],
-            [['title', 'title_seo', 'alias'], 'string', 'max' => 255]
+            [['title', 'title_seo', 'alias'], 'string', 'max' => 255],
+            ['category_id', 'required', 'on' => 'required_category'],
         ];
     }
 
@@ -73,6 +79,22 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
+                ],
+            ],
+        ];
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCategory()
@@ -86,5 +108,24 @@ class Post extends \yii\db\ActiveRecord
     public function getType()
     {
         return $this->hasOne(Type::className(), ['id' => 'type_id']);
+    }
+
+    /**
+     * @return string status
+     */
+    public function getStatus()
+    {
+        return self::getStatuses()[$this->publish_status];
+    }
+
+    /**
+     * @return array statuses
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_DRAFT => Module::t('main', 'Draft'),
+            self::STATUS_PUBLISHED => Module::t('main', 'Published'),
+        ];
     }
 }

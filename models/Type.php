@@ -57,4 +57,29 @@ class Type extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Post::className(), ['type_id' => 'id']);
     }
+
+    /**
+     * Gets a list of all the models.
+     * Can be used as array in yii\widgets\ActiveForm dropDownList().
+     *
+     * @param int $excludeId ignoring model with this id
+     * @return array list of all models.
+     */
+    public static function getList($excludeId = 0)
+    {
+        $list = [];
+        $query = self::find()->orderBy('title');
+
+        if (!empty($excludeId)) {
+            $query->where('`id` != :excludeId', ['excludeId' => $excludeId]);
+        }
+
+        $models = $query->all();
+
+        foreach ($models as $model) {
+            $list[$model->id] = $model->title;
+        }
+
+        return $list;
+    }
 }

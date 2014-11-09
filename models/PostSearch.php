@@ -64,10 +64,17 @@ class PostSearch extends Post
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'title_seo', $this->title_seo])
             ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'meta_description', $this->meta_description])
             ->andFilterWhere(['like', 'preview', $this->preview])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'thumbnail', $this->thumbnail]);
+
+        if ($this->meta_description === 'yes') {
+            $query->andOnCondition('`meta_description` != ""');
+        }
+
+        if ($this->meta_description === 'no') {
+            $query->andOnCondition('`meta_description` = ""');
+        }
 
         return $dataProvider;
     }
