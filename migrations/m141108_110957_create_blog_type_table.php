@@ -11,6 +11,7 @@ class m141108_110957_create_blog_type_table extends Migration
             'id' => 'pk',
             'title' => Schema::TYPE_STRING . ' NOT NULL',
             'alias' => Schema::TYPE_STRING . ' NOT NULL',
+            'show_category' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 1',
         ]);
     }
 

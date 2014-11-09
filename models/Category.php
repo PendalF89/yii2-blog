@@ -6,7 +6,7 @@ use Yii;
 use pendalf89\blog\Module;
 
 /**
- * This is the model class for table "{{%category}}".
+ * This is the model class for table "blog_category".
  *
  * @property integer $id
  * @property integer $parent_id

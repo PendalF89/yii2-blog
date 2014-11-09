@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use pendalf89\blog\Module;
+use pendalf89\blog\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel pendalf89\blog\models\CategorySearch */
@@ -28,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
             [
                 'attribute' => 'parent_id',
                 'value' => function ($model) {
                        return $model->getParentTitle();
                     },
+                'filter' => Category::getList(),
             ],
             'title',
             'alias',

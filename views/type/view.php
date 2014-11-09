@@ -3,16 +3,17 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use pendalf89\blog\Module;
+use pendalf89\blog\helpers\Helper;
 
 /* @var $this yii\web\View */
-/* @var $model pendalf89\blog\models\Category */
+/* @var $model pendalf89\blog\models\Type */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Categories'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Post types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="category-view">
+<div class="type-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -21,25 +22,24 @@ $this->params['breadcrumbs'][] = $this->title;
             ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Module::t('main', 'Delete'),
             ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            [
-                'attribute' => 'parent_id',
-                'value' => $model->getParentTitle(),
-            ],
             'title',
             'alias',
-            'position',
+            [
+                'attribute' => 'show_category',
+                'value' => Helper::booleanChoiceArray()[$model->show_category],
+            ],
         ],
     ]) ?>
 
