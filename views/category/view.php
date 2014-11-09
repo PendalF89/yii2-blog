@@ -8,6 +8,7 @@ use pendalf89\blog\Module;
 /* @var $model pendalf89\blog\models\Category */
 
 $this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

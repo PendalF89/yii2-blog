@@ -9,6 +9,7 @@ use pendalf89\blog\Module;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Module::t('main', 'Categories');
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">

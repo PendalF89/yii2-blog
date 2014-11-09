@@ -7,9 +7,10 @@ use pendalf89\blog\Module;
 /* @var $model pendalf89\blog\models\Category */
 
 $this->title = Module::t('main', 'Update category “{title}”', ['title' => $model->title]);
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Module::t('main', 'Update category');
 ?>
 <div class="category-update">
 

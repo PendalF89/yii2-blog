@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Blog' => 'Блог',
     'Create' => 'Создать',
     'Update' => 'Обновить',
     'Delete' => 'Удалить',
