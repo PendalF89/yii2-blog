@@ -9,6 +9,10 @@
         }
     ],
     "minimum-stability": "stable",
+    "require": {
+        "yiisoft/yii2": "*",
+        "pendalf89/yii2-tree": "*"
+    },
     "autoload": {
         "psr-4": {
             "pendalf89\\blog\\": ""

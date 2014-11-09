@@ -11,7 +11,6 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        // Yii::$app->db->tablePrefix = 'blog_';
         $this->registerTranslations();
     }
 
@@ -20,9 +19,9 @@ class Module extends \yii\base\Module
         Yii::$app->i18n->translations['modules/blog/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => 'vendor/pendalf89/yii2-blog/messages',
+            'basePath' => '@vendor/pendalf89/yii2-blog/messages',
             'fileMap' => [
-                'modules/showcase/main' => 'main.php',
+                'modules/blog/main' => 'main.php',
             ],
         ];
     }
