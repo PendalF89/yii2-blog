@@ -8,7 +8,8 @@
             "email": "pendalf@mail.ru"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
     "require": {
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
