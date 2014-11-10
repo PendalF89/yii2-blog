@@ -13,7 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
-        "pendalf89/yii2-responsive-filemanager": "*",
+        "pendalf89/yii2-responsive-filemanager": "dev-master",
         "thiagotalma/yii2-jstree": "*",
         "maybeworks/yii2-tinymce": "*"
     },
