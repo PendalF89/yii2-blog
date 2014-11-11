@@ -6,20 +6,29 @@ Installation
 ------------
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+Add repositories info for original responsive filemanager repository.
 
-Either run
-
-```
-php composer.phar require --prefer-dist pendalf89/yii2-blog "*"
-```
-
-or add
+`composer.json` file:
 
 ```
-"pendalf89/yii2-blog": "*"
+"require": {
+    "pendalf89/yii2-blog": "*"
+},
+"repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "trippo/responsivefilemanager",
+                "version": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/trippo/responsivefilemanager",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
 ```
-
-to the require section of your `composer.json` file.
 
 Apply migration
 ```sh
