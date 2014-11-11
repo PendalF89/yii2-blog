@@ -13,7 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
-        "pendalf89/yii2-responsive-filemanager": "dev-master",
+        "pendalf89/yii2-responsive-filemanager": "*",
         "thiagotalma/yii2-jstree": "*",
         "maybeworks/yii2-tinymce": "*"
     },
@@ -21,5 +21,19 @@
         "psr-4": {
             "pendalf89\\blog\\": ""
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "trippo/responsivefilemanager",
+                "version": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/trippo/responsivefilemanager",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
 }
