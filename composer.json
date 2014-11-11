@@ -21,19 +21,5 @@
         "psr-4": {
             "pendalf89\\blog\\": ""
         }
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "trippo/responsivefilemanager",
-                "version": "dev-master",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/trippo/responsivefilemanager",
-                    "reference": "master"
-                }
-            }
-        }
-    ]
+    }
 }
