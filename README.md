@@ -32,10 +32,13 @@ Configuration:
 'modules' => [
     'blog' => [
         'class' => 'pendalf89\blog\Module',
-        'autoTranslit' => true, // This option automatically translit entered titles from russian symbols to english on fly. Default false;
-        'editorOptions' => [], // Some options for CKEditor. Default custom options.
+        // This option automatically translit entered titles 
+        // from russian symbols to english on fly. Default false.
+        'autoTranslit' => true, 
+        // Some options for CKEditor. Default custom options.
+        'editorOptions' => [], 
     ],
 ],
 ```
 
-Don't forget configure MihailDev/yii2-elfinder[composer](https://github.com/MihailDev/yii2-elfinder) extension.
+Don't forget configure [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension.
