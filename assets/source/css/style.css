@@ -1,3 +1,7 @@
 .post-form .panel-body {
     background: url(../images/bg.png);
 }
+
+#postsearch-title {
+    width: 535px;
+}

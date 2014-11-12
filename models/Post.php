@@ -52,6 +52,7 @@ class Post extends ActiveRecord
             [['meta_description', 'preview', 'content', 'thumbnail'], 'string'],
             [['title', 'title_seo', 'alias'], 'string', 'max' => 255],
             ['category_id', 'required', 'on' => 'required_category'],
+            ['views', 'required', 'on' => 'views_increment'],
         ];
     }
 
@@ -83,6 +84,10 @@ class Post extends ActiveRecord
      */
     public function behaviors()
     {
+        if ($this->scenario === 'views_increment') {
+            return [];
+        }
+
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
@@ -90,7 +95,7 @@ class Post extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
                 ],
-            ],
+            ]
         ];
     }
 

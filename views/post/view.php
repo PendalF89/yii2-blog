@@ -18,6 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a(
+            '<span class="glyphicon glyphicon-eye-open"></span> ' . Module::t('main', 'View post on the site'),
+            $viewPostUrl,
+            ['target' => '_blank', 'class' => 'btn btn-info']
+        ); ?>
         <?= Html::a('<span class="glyphicon glyphicon-pencil"></span> ' . Module::t('main', 'Update'),
             ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Module::t('main', 'Delete'),
@@ -58,10 +63,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => !empty($model->meta_description) ? $model->meta_description : null,
             ],
             'views',
-            'publish_status',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'publish_status',
+                'value' => $model->getStatus(),
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => Yii::$app->formatter->asDatetime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => !empty($model->updated_at)
+                        ? Yii::$app->formatter->asDatetime($model->updated_at)
+                        : null,
+            ],
         ],
     ]) ?>
-
 </div>
+
+<?php
+//use pendalf89\blog\widgets\ViewCounterWidget;
+//
+//echo ViewCounterWidget::widget(['model' => $model])
+//?>

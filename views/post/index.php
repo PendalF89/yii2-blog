@@ -23,15 +23,26 @@ BlogAsset::register($this);
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= $this->render('_new', ['model' => $model]) ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $this->render('_new', ['model' => $model]) ?>
+        </div>
+        <div class="col-md-8">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'title',
+            [
+                'attribute' => 'title',
+                'format' => 'html',
+                'value' => function($model) {
+                        return Html::a($model->title, ['/blog/post/update', 'id' => $model->id]);
+                    },
+            ],
             [
                 'attribute' => 'category_id',
                 'value' => function($model) {
@@ -64,8 +75,19 @@ BlogAsset::register($this);
                     },
                 'filter' => Post::getStatuses(),
             ],
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}',
+                'buttons' => [
+                    'view' => function($url, $model) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-eye-open"></span>',
+                                $this->context->getViewPostUrl($model),
+                                ['target' => '_blank', 'title' => Module::t('main', 'View post on the site')]
+                            );
+                        }
+                ]
+            ],
         ],
     ]); ?>
 

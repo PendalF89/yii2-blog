@@ -1,36 +1,41 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\jui\AutoComplete;
+use yii\bootstrap\ActiveForm;
 use pendalf89\blog\models\Post;
+use pendalf89\blog\Module;
+use kartik\widgets\Typeahead;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\PostSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="post-search">
+<div class="panel panel-warning">
+    <div class="panel-heading"><?= Module::t('main', 'Post search') ?></div>
+    <div class="panel-body">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+        <?php $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+            'layout' => 'inline'
+        ]); ?>
 
-<!--    --><?//= $form->field($model, 'title') ?>
-    <?= AutoComplete::widget([
-        'model' => $model,
-        'attribute' => 'title',
-        'clientOptions' => [
-            'source' => Post::getTitlesList(),
-        ],
-    ]); ?>
+            <?= $form->field($model, 'title')->widget(Typeahead::classname(), [
+                'options' => ['placeholder' => Module::t('main', 'Enter post title...')],
+                'pluginOptions' => ['highlight' => true],
+                'dataset' => [
+                    [
+                        'local' =>  Post::getTitlesList(),
+                    ]
+                ]
+            ]); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+            <?= Html::submitButton('<span class="glyphicon glyphicon-search"></span> '
+                . Module::t('main', 'Search'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Module::t('main', 'Reset'), '/blog/post/index', ['class' => 'btn btn-default']) ?>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

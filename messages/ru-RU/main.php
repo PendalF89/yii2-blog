@@ -46,4 +46,9 @@ return [
     'Created at' => 'Создан',
     'Updated at' => 'Обновлён',
     'Show Category' => 'Показывать категорию',
+    'Enter post title...' => 'Введите название записи...',
+    'Search' => 'Найти',
+    'Reset' => 'Сбросить',
+    'Post search' => 'Поиск записей',
+    'View post on the site' => 'Посмотреть запись на сайте',
 ];

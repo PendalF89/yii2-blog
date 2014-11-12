@@ -61,9 +61,15 @@ class Module extends \yii\base\Module
         ],
     ];
 
+    /**
+     * @var string callback function for create post view url. Have $model argument.
+     */
+    public $viewPostUrlCallback = '';
+
     public function init()
     {
         parent::init();
+        $this->setDefaultViewPostUrlCallback();
         $this->registerTranslations();
     }
 
@@ -82,5 +88,14 @@ class Module extends \yii\base\Module
     public static function t($category, $message, $params = [], $language = null)
     {
         return Yii::t("modules/blog/$category", $message, $params, $language);
+    }
+
+    private function setDefaultViewPostUrlCallback()
+    {
+        if (empty($this->viewPostUrlCallback)) {
+            $this->viewPostUrlCallback = function ($model) {
+                return '#please_set_view_post_url_callback ' . $model->alias;
+            };
+        }
     }
 }

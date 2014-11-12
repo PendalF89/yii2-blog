@@ -37,8 +37,12 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $viewPostUrl = $this->getViewPostUrl($model);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'viewPostUrl' => $viewPostUrl,
         ]);
     }
 
@@ -117,5 +121,14 @@ class PostController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param $model Post model
+     * @return string view post url
+     */
+    public function getViewPostUrl($model)
+    {
+        return call_user_func_array($this->module->viewPostUrlCallback, ['model' => $model]);
     }
 }
