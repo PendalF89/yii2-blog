@@ -15,7 +15,8 @@
         "pendalf89/yii2-tree": "*",
         "thiagotalma/yii2-jstree": "*",
         "MihailDev/yii2-elfinder": "*",
-        "mihaildev/yii2-ckeditor": "*"
+        "mihaildev/yii2-ckeditor": "*",
+        "kartik-v/yii2-widgets": "*"
     },
     "autoload": {
         "psr-4": {

@@ -128,4 +128,18 @@ class Post extends ActiveRecord
             self::STATUS_PUBLISHED => Module::t('main', 'Published'),
         ];
     }
+
+    /**
+     * @return array titles list
+     */
+    public static function getTitlesList()
+    {
+        $titles = [];
+
+        foreach (self::find()->all() as $model) {
+            $titles[] = $model->title;
+        }
+
+        return $titles;
+    }
 }

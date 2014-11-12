@@ -15,13 +15,5 @@ class TranslitAsset extends AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
     ];
-
-    public function init()
-    {
-        parent::init();
-
-        $this->js = [
-            YII_ENV_PROD ? 'translit.js' : 'translit.min.js',
-        ];
-    }
+    public $js = ['translit.js'];
 }

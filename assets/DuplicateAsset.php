@@ -15,13 +15,5 @@ class DuplicateAsset extends AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
     ];
-
-    public function init()
-    {
-        parent::init();
-
-        $this->js = [
-            YII_ENV_PROD ? 'duplicate.js' : 'duplicate.min.js',
-        ];
-    }
+    public $js = ['duplicate.js'];
 }

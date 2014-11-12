@@ -8,10 +8,14 @@ use pendalf89\blog\Module;
 use maybeworks\tinymce\TinyMceWidget;
 use mihaildev\elfinder\ElFinder;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\InputFile;
+use pendalf89\blog\assets\BlogAsset;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
 /* @var $form yii\widgets\ActiveForm */
+
+BlogAsset::register($this);
 ?>
 
 <div class="post-form">
@@ -60,7 +64,13 @@ use mihaildev\ckeditor\CKEditor;
 
                     <?= $form->field($model, 'alias')->textInput(['maxlength' => 255, 'class' => 'form-control translit-output']) ?>
 
-                    <?= $form->field($model, 'thumbnail')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'thumbnail')->widget(InputFile::className(), [
+                        'filter'        => 'image',
+                        'template'      => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                        'options'       => ['class' => 'form-control'],
+                        'buttonOptions' => ['class' => 'btn btn-default'],
+                        'buttonName' => '<span class="glyphicon glyphicon-picture"></span> ' . Module::t('main', 'Select'),
+                    ]); ?>
 
                     <?= Html::submitButton($model->isNewRecord
                         ? Module::t('main', 'Save')

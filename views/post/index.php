@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\bootstrap\ActiveForm;
 use pendalf89\blog\Module;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\models\Type;
 use pendalf89\blog\models\Category;
 use pendalf89\blog\helpers\Helper;
+use pendalf89\blog\assets\BlogAsset;
 
 /* @var $this yii\web\View */
 /* @var $searchModel pendalf89\blog\models\PostSearch */
@@ -16,11 +16,14 @@ use pendalf89\blog\helpers\Helper;
 $this->title = Module::t('main', 'Posts');
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+BlogAsset::register($this);
 ?>
 <div class="post-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-<!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= $this->render('_new', ['model' => $model]) ?>
 
