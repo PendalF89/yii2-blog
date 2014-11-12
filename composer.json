@@ -13,9 +13,9 @@
     "require": {
         "yiisoft/yii2": "*",
         "pendalf89/yii2-tree": "*",
-        "pendalf89/yii2-responsive-filemanager": "*",
         "thiagotalma/yii2-jstree": "*",
-        "maybeworks/yii2-tinymce": "*"
+        "MihailDev/yii2-elfinder": "*",
+        "mihaildev/yii2-ckeditor": "*"
     },
     "autoload": {
         "psr-4": {

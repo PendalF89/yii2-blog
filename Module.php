@@ -11,6 +11,8 @@ use Yii;
  */
 class Module extends \yii\base\Module
 {
+    public $controllerNamespace = 'pendalf89\blog\controllers';
+
     /**
      * If true, entered title on create will be translited from
      * russian symbols to english automatically on fly.
@@ -19,7 +21,45 @@ class Module extends \yii\base\Module
      */
     public $autoTranslit = false;
 
-    public $controllerNamespace = 'pendalf89\blog\controllers';
+    /**
+     * Documentation here: http://ckeditor.com/latest/samples/plugins/toolbar/toolbar.html
+     *
+     * @var array options for CKEDitor editor.
+     */
+    public $editorOptions = [
+        'toolbar' => [
+            ['items' => [
+                'Source',
+                '-',
+                'Undo',
+                'Redo',
+                'Bold',
+                'Italic',
+                'Underline',
+                'Strike',
+                '-',
+                'RemoveFormat',
+                'NumberedList',
+                'BulletedList',
+                '-',
+                'JustifyLeft',
+                'JustifyCenter',
+                'JustifyRight',
+                'JustifyBlock',
+                '-',
+                'Blockquote',
+                '-',
+                'Link',
+                'Unlink',
+                '-',
+                'Image',
+                'Table',
+                'ShowBlocks',
+                'PasteFromWord',
+                'Format',
+            ]],
+        ],
+    ];
 
     public function init()
     {

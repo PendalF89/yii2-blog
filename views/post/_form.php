@@ -6,6 +6,8 @@ use pendalf89\blog\models\Category;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\Module;
 use maybeworks\tinymce\TinyMceWidget;
+use mihaildev\elfinder\ElFinder;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
@@ -18,7 +20,7 @@ use maybeworks\tinymce\TinyMceWidget;
 
     <div class="row">
         <!--Left column START-->
-        <div class="col-md-8 panel-default">
+        <div class="col-md-9 panel-default">
             <div class="panel panel-default">
                 <div class="panel-body">
 
@@ -28,13 +30,13 @@ use maybeworks\tinymce\TinyMceWidget;
                     <?= $form->field($model, 'title_seo')->textInput(['maxlength' => 255,
                         'class' => 'form-control duplicate-output']) ?>
 
-                    <?= $form->field($model, 'content')->widget(TinyMceWidget::className(), [
-                        'clientOptions' => [
-                            //'height' => 400,
-                        ]
-                    ]) ?>
+                    <?= $form->field($model, 'content')->widget(CKEditor::className(), [
+                        'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                    ]); ?>
 
-                    <?= $form->field($model, 'preview')->widget(TinyMceWidget::className()) ?>
+                    <?= $form->field($model, 'preview')->widget(CKEditor::className(), [
+                        'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                    ]); ?>
 
                     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
 
@@ -44,7 +46,7 @@ use maybeworks\tinymce\TinyMceWidget;
         <!--Left column END-->
 
         <!--Right column START-->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
 
@@ -72,12 +74,18 @@ use maybeworks\tinymce\TinyMceWidget;
                     <table class="table table-bordered">
                         <tbody>
                         <tr>
-                            <td><?= Module::t('main', 'Post created') ?></td>
+                            <td>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="glyphicon glyphicon-plus text-success"></span>
+                            </td>
                             <td><?= Yii::$app->formatter->asDatetime($model->created_at) ?></td>
                         </tr>
                         <?php if (!empty($model->updated_at)) : ?>
                             <tr>
-                                <td><?= Module::t('main', 'Post updated') ?></td>
+                                <td>
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-pencil text-warning"></span>
+                                </td>
                                 <td><?= Yii::$app->formatter->asDatetime($model->updated_at) ?></td>
                             </tr>
                         <?php endif; ?>
@@ -89,8 +97,6 @@ use maybeworks\tinymce\TinyMceWidget;
         </div>
         <!--Right column END-->
     </div>
-
-
 
     <?php ActiveForm::end(); ?>
 
