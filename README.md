@@ -41,4 +41,4 @@ Configuration:
 ],
 ```
 
-Don't forget configure [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension.
+Don't forget configure controllerMap for EFInder. See more on [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension.
