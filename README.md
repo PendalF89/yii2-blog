@@ -41,4 +41,4 @@ Configuration:
 ],
 ```
 
-Don't forget configure controllerMap for ELFInder. See more on [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension.
+Don't forget configure controllerMap for ElFinder. See how to do this on [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension page.
