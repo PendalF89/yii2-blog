@@ -66,6 +66,11 @@ class Module extends \yii\base\Module
      */
     public $viewPostUrlCallback = '';
 
+    /**
+     * @var array thumbnails names and sizes, for example: ['small' => [100, 100], 'medium' => [250, 250]]
+     */
+    public $thumbnails = [];
+
     public function init()
     {
         parent::init();

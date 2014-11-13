@@ -24,11 +24,7 @@ use kartik\widgets\Typeahead;
             <?= $form->field($model, 'title')->widget(Typeahead::classname(), [
                 'options' => ['placeholder' => Module::t('main', 'Enter post title...')],
                 'pluginOptions' => ['highlight' => true],
-                'dataset' => [
-                    [
-                        'local' =>  Post::getTitlesList(),
-                    ]
-                ]
+                'dataset' => [['local' => $titles]]
             ]); ?>
 
             <?= Html::submitButton('<span class="glyphicon glyphicon-search"></span> '

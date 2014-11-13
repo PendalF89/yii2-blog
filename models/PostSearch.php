@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use pendalf89\blog\models\Post;
 
 /**
- * PostSearch represents the model behind the search form about `backend\modules\blog\models\Post`.
+ * PostSearch represents the model behind the search form about `pendalf89\blog\models\Post`.
  */
 class PostSearch extends Post
 {
@@ -19,7 +19,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'category_id', 'type_id', 'views', 'publish_status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'title_seo', 'alias', 'meta_description', 'preview', 'content', 'thumbnail'], 'safe'],
+            [['title', 'title_seo', 'alias', 'meta_description', 'preview', 'content'], 'safe'],
         ];
     }
 
@@ -65,8 +65,7 @@ class PostSearch extends Post
             ->andFilterWhere(['like', 'title_seo', $this->title_seo])
             ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'preview', $this->preview])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'thumbnail', $this->thumbnail]);
+            ->andFilterWhere(['like', 'content', $this->content]);
 
         if ($this->meta_description === 'yes') {
             $query->andOnCondition('`meta_description` != ""');

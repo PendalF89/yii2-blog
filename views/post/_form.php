@@ -64,7 +64,7 @@ BlogAsset::register($this);
 
                     <?= $form->field($model, 'alias')->textInput(['maxlength' => 255, 'class' => 'form-control translit-output']) ?>
 
-                    <?= $form->field($model, 'thumbnail')->widget(InputFile::className(), [
+                    <?= $form->field($model, 'thumbnails')->widget(InputFile::className(), [
                         'filter'        => 'image',
                         'template'      => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
                         'options'       => ['class' => 'form-control'],

@@ -43,6 +43,7 @@ return [
     'Views' => 'Просмотры',
     'Publish Status' => 'Статус',
     'Thumbnail' => 'Миниатюра',
+    'Thumbnails' => 'Миниатюры',
     'Created at' => 'Создан',
     'Updated at' => 'Обновлён',
     'Show Category' => 'Показывать категорию',
@@ -51,4 +52,6 @@ return [
     'Reset' => 'Сбросить',
     'Post search' => 'Поиск записей',
     'View post on the site' => 'Посмотреть запись на сайте',
+    'Welcome to the module “Blog”!' => 'Добро пожаловать в модуль «Блог»!',
+    'You have successfully installed the module “Blog” is now to create a record, you need to create your first post type and category' => 'Вы успешно установили модуль «Блог», теперь, чтобы создавать записи, вы должны создать свой первый тип записи и категорию',
 ];

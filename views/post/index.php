@@ -27,9 +27,11 @@ BlogAsset::register($this);
         <div class="col-md-4">
             <?= $this->render('_new', ['model' => $model]) ?>
         </div>
-        <div class="col-md-8">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-        </div>
+        <?php if ($titles = Post::getTitlesList()) : ?>
+            <div class="col-md-4">
+                <?php echo $this->render('_search', ['model' => $searchModel, 'titles' => $titles]); ?>
+            </div>
+        <?php endif; ?>
     </div>
 
     <?= GridView::widget([

@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use pendalf89\blog\Module;
 use pendalf89\blog\helpers\Helper;
 use pendalf89\blog\assets\BlogAsset;
+use kartik\widgets\Alert;
 
 /* @var $this yii\web\View */
 /* @var $searchModel pendalf89\blog\models\TypeSearch */
@@ -18,6 +18,16 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 
 <div class="blog-default-index">
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?php if (Helper::isJustInstalled()) : ?>
+        <?= Alert::widget([
+            'type' => Alert::TYPE_SUCCESS,
+            'title' => Module::t('main', 'Welcome to the module “Blog”!'),
+            'icon' => 'glyphicon glyphicon-ok-sign',
+            'body' => Module::t('main', 'You have successfully installed the module “Blog” is now to create a record, you need to create your first post type and category'),
+            'showSeparator' => true,
+        ]); ?>
+    <?php endif; ?>
 
     <div class="row">
         <div class="col-md-4">

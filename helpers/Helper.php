@@ -3,6 +3,8 @@
 namespace pendalf89\blog\helpers;
 
 use Yii;
+use pendalf89\blog\models\Type;
+use pendalf89\blog\models\Category;
 
 class Helper
 {
@@ -25,6 +27,10 @@ class Helper
         ];
     }
 
+    /**
+     * @param string $str
+     * @return string string to lower
+     */
     public static function strtolower($str)
     {
         return mb_strtolower($str, Yii::$app->charset);
@@ -44,5 +50,17 @@ class Helper
 
         $temp = substr($str, 0, $length);
         return substr($temp, 0, strrpos($temp, ' ') ) . $postfix;
+    }
+
+    /**
+     * Check that blog just installed
+     * @return bool
+     */
+    public static function isJustInstalled()
+    {
+        $types = Type::find()->all();
+        $categories = Category::find()->all();
+
+        return empty($types) || empty($categories) ? : false;
     }
 }

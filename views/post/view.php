@@ -80,9 +80,3 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 </div>
-
-<?php
-//use pendalf89\blog\widgets\ViewCounterWidget;
-//
-//echo ViewCounterWidget::widget(['model' => $model])
-//?>

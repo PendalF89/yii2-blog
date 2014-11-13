@@ -10,7 +10,7 @@ namespace pendalf89\blog\widgets;
  *
  * @author Zabolotskikh Boris <zabolotskich@bk.ru>
  */
-class ViewCounterWidget extends \yii\base\Widget
+class ViewsCounterWidget extends \yii\base\Widget
 {
     /**
      * @var \pendalf89\blog\models\Post null Post model
@@ -19,8 +19,8 @@ class ViewCounterWidget extends \yii\base\Widget
 
     public function run()
     {
-        $this->model->scenario = 'views_increment';
         ++$this->model->views;
+        $this->model->detachBehavior('timestamp');
         $this->model->save();
 
         return $this->model->views;
