@@ -39,6 +39,17 @@ BlogAsset::register($this);
         'filterModel' => $searchModel,
         'columns' => [
             [
+                'attribute' => 'original_thumbnail',
+                'format' => 'html',
+                'value' => function($model) {
+                        $thumb = $model->getThumbnail($this->context->module->gridViewThumbnail);
+                        return !empty($thumb) ? Html::a(
+                            Html::img($thumb),
+                            ['/blog/post/update', 'id' => $model->id]
+                        ) : '';
+                    },
+            ],
+            [
                 'attribute' => 'title',
                 'format' => 'html',
                 'value' => function($model) {
@@ -68,14 +79,26 @@ BlogAsset::register($this);
                         return Helper::booleanIconChoiceArray()[$metaDecriptionStatus];
                     },
                 'filter' => ['yes' => Yii::t('yii', 'Yes'), 'no' => Yii::t('yii', 'No')],
+                'headerOptions' => ['class' => 'text-center'],
+                'contentOptions' => ['class' => 'text-center'],
             ],
-             'views',
+            [
+                'attribute' => 'views',
+                'headerOptions' => ['class' => 'text-center'],
+                'contentOptions' => ['class' => 'text-center'],
+            ],
             [
                 'attribute' => 'publish_status',
                 'value' => function($model) {
                         return $model->getStatus();
                     },
                 'filter' => Post::getStatuses(),
+            ],
+            [
+                'header' => Module::t('main', 'Last changes'),
+                'value' => function($model) {
+                        return Yii::$app->formatter->asDatetime($model->getLastChangesTimestamp());
+                    },
             ],
             [
                 'class' => 'yii\grid\ActionColumn',

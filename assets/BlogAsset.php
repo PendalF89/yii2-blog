@@ -15,4 +15,5 @@ class BlogAsset extends AssetBundle
     public $css = [
         'css/style.css',
     ];
+    public $depends = ['yii\bootstrap\BootstrapAsset'];
 }

@@ -6,6 +6,7 @@ use Yii;
 use pendalf89\blog\Module;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "blog_post".
@@ -34,6 +35,11 @@ class Post extends ActiveRecord
     const STATUS_DRAFT = 0;
 
     /**
+     * @var string url for original thumbnail image
+     */
+    public $original_thumbnail = '';
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -49,9 +55,10 @@ class Post extends ActiveRecord
         return [
             [['category_id', 'type_id', 'publish_status', 'created_at', 'updated_at'], 'integer'],
             [['type_id', 'title', 'title_seo', 'alias', 'preview', 'content'], 'required'],
-            [['meta_description', 'preview', 'content', 'thumbnails'], 'string'],
+            [['meta_description', 'preview', 'content', 'thumbnails', 'original_thumbnail'], 'string'],
             [['title', 'title_seo', 'alias'], 'string', 'max' => 255],
             ['category_id', 'required', 'on' => 'required_category'],
+            ['thumbnails', 'default', 'value' => ''],
         ];
     }
 
@@ -73,6 +80,7 @@ class Post extends ActiveRecord
             'views' => Module::t('main', 'Views'),
             'publish_status' => Module::t('main', 'Publish Status'),
             'thumbnails' => Module::t('main', 'Thumbnails'),
+            'original_thumbnail' => Module::t('main', 'Thumbnail'),
             'created_at' => Module::t('main', 'Created at'),
             'updated_at' => Module::t('main', 'Updated at'),
         ];
@@ -92,6 +100,12 @@ class Post extends ActiveRecord
                 ],
             ]
         ];
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->original_thumbnail = $this->getOriginalThumbnail();
     }
 
     /**
@@ -115,7 +129,114 @@ class Post extends ActiveRecord
      */
     public function getStatus()
     {
-        return self::getStatuses()[$this->publish_status];
+        $statuses = self::getStatuses();
+        return $statuses[$this->publish_status];
+    }
+
+    /**
+     * @return boolean thumbnails
+     */
+    public function getThumbnails()
+    {
+        return unserialize($this->thumbnails);
+    }
+
+    /**
+     * @return boolean thumbnail by preset name (see presets in module configuration)
+     */
+    public function getThumbnail($presetName)
+    {
+        $thumbnails = $this->getThumbnails();
+        return !empty($thumbnails[$presetName]) ? $thumbnails[$presetName] : '' ;
+    }
+
+    /**
+     * @return string original thumbnail
+     */
+    public function getOriginalThumbnail()
+    {
+        return $this->getThumbnail('original');
+    }
+
+    /**
+     * @return int last changes timestamp
+     */
+    public function getLastChangesTimestamp()
+    {
+        return !empty($this->updated_at) ? $this->updated_at : $this->created_at;
+    }
+
+    /**
+     * This method create thumbnails by original thumbnail path ($this->thumbnails)
+     * and use thumbnails presets (they are in Blog module configuration).
+     *
+     * @param array $presets configuration for thumbnails like ['small' => [100, 100], 'medium' => [250, 250]]
+     * @return string|boolean serialized thumbnails array
+     */
+    public function createThumbnails(array $presets)
+    {
+        $originalThumbPath = $this->original_thumbnail;
+
+        if (!file_exists(Yii::getAlias("@webroot$originalThumbPath"))) {
+            return false;
+        }
+
+        $thumbInfo = pathinfo($originalThumbPath);
+        $filename = $thumbInfo['filename'];
+        $extension = $thumbInfo['extension'];
+        $dirname = $thumbInfo['dirname'];
+        $thumbnails = ['original' => $originalThumbPath];
+
+        Image::$driver = [Image::DRIVER_GD2, Image::DRIVER_GMAGICK, Image::DRIVER_IMAGICK];
+
+        foreach ($presets as $presetName => $sizes) {
+            $width = $sizes[0];
+            $height = $sizes[1];
+            $relativePath = "$dirname/$filename-{$width}x{$height}.$extension";
+
+            Image::thumbnail("@webroot$originalThumbPath", $width, $height)
+                ->save(Yii::getAlias("@webroot$relativePath"));
+
+            $thumbnails[$presetName] = $relativePath;
+        }
+
+        return $this->thumbnails = serialize($thumbnails);
+    }
+
+    /**
+     * Delete all thumbnails for this model except original thumbnail
+     * @return array deleted thumbnails names
+     */
+    public function deleteThumbnails()
+    {
+        $deletedFileNames = [];
+        $thumbnails = $this->getThumbnails();
+        unset($thumbnails['original']);
+
+        foreach ($thumbnails as $key => $path) {
+            $fileName = Yii::getAlias("@webroot$path");
+
+            if (file_exists($fileName) && unlink($fileName)) {
+                $deletedFileNames[] = $path;
+            }
+        }
+
+        return $deletedFileNames;
+    }
+
+    /**
+     * Check whether thumbnail by other posts.
+     * @return bool
+     */
+    public function isThumbnailUseInOtherPosts()
+    {
+        if (self::find()
+            ->where(['!=', 'id', $this->id])
+            ->andWhere(['thumbnails' => $this->thumbnails])
+            ->all()) {
+            return true;
+        }
+            return false;
     }
 
     /**

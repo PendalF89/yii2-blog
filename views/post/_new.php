@@ -13,6 +13,17 @@ use pendalf89\blog\models\Type;
 <div class="panel panel-info">
     <div class="panel-heading"><?= Module::t('main', 'New post') ?></div>
     <div class="panel-body">
+
+<!--        --><?//= Html::beginForm('/blog/post/create', 'get') ?>
+<!---->
+<!--            --><?//= Html::dropDownList('type', null, Type::getList()) ?>
+<!---->
+<!--            --><?//= Html::submitButton('<span class="glyphicon glyphicon-plus"></span> '
+//                . Module::t('main', 'Add'),
+//                ['class' => 'btn btn-success']) ?>
+<!---->
+<!--        --><?//= Html::endForm() ?>
+
         <?php $form = ActiveForm::begin([
             'action' => ['/blog/post/create'],
             'method' => 'get',

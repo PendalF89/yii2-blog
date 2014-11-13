@@ -2,11 +2,11 @@
 
 namespace pendalf89\blog\controllers;
 
-use pendalf89\blog\models\Type;
 use Yii;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\models\PostSearch;
 use yii\web\NotFoundHttpException;
+use yii\imagine\Image;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -56,18 +56,25 @@ class PostController extends Controller
         $model = new Post();
         $model->load(Yii::$app->request->get());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
 
-            if ($model->type->show_category) {
-                $model->setScenario('required_category');
+            if (!empty($model->original_thumbnail)) {
+                $model->createThumbnails($this->module->thumbnails);
             }
 
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->save()) {
+                Yii::$app->session->setFlash('postSaved');
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         }
+
+        if ($model->type->show_category) {
+            $model->setScenario('required_category');
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -80,18 +87,29 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
 
-            if ($model->type->show_category) {
-                $model->setScenario('required_category');
+            if (!empty($model->thumbnails)) {
+                if (!$model->isThumbnailUseInOtherPosts()) {
+                    $model->deleteThumbnails();
+                }
+                $model->thumbnails = '';
             }
 
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if (!empty($model->original_thumbnail)) {
+                $model->createThumbnails($this->module->thumbnails);
+            }
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('postSaved');
+            }
         }
+
+        if ($model->type->show_category) {
+            $model->setScenario('required_category');
+        }
+
+        return $this->render('update', ['model' => $model]);
     }
 
     /**

@@ -54,4 +54,11 @@ return [
     'View post on the site' => 'Посмотреть запись на сайте',
     'Welcome to the module “Blog”!' => 'Добро пожаловать в модуль «Блог»!',
     'You have successfully installed the module “Blog” is now to create a record, you need to create your first post type and category' => 'Вы успешно установили модуль «Блог», теперь, чтобы создавать записи, вы должны создать свой первый тип записи и категорию',
+    'Post “{title}” has been saved successfully!' => 'Запись «{title}» успешно сохранена!',
+    'You can watch this post {on the site}, or go to see {all posts}.' => 'Вы можете посмотреть эту запись {on the site}, или посмотреть {all posts}.',
+    'All posts' => 'Все записи',
+    'On the site' => 'На сайте',
+    'View on the site' => 'Посмотреть на сайте',
+    'Detail info' => 'Детальная информация',
+    'Last changes' => 'Последние изменения',
 ];

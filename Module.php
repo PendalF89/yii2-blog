@@ -71,6 +71,11 @@ class Module extends \yii\base\Module
      */
     public $thumbnails = [];
 
+    /**
+     * @var string thumbnails preset using in admin grid view
+     */
+    public $gridViewThumbnail = '';
+
     public function init()
     {
         parent::init();

@@ -5,7 +5,6 @@ use yii\widgets\ActiveForm;
 use pendalf89\blog\models\Category;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\Module;
-use maybeworks\tinymce\TinyMceWidget;
 use mihaildev\elfinder\ElFinder;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\InputFile;
@@ -54,30 +53,58 @@ BlogAsset::register($this);
             <div class="panel panel-default">
                 <div class="panel-body">
 
+                    <div id="thumbnail-container">
+                        <?php if (!empty($model->original_thumbnail)) : ?>
+                            <?= Html::img($model->original_thumbnail, ['style' => 'width: 100%']) ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <?= $form->field($model, 'original_thumbnail')->widget(InputFile::className(), [
+                        'language' => substr(Yii::$app->language, 0, 2),
+                        'filter' => 'image',
+                        'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                        'options' => ['class' => 'form-control'],
+                        'buttonOptions' => ['class' => 'btn btn-default'],
+                        'buttonName' => '<span class="glyphicon glyphicon-picture"></span> ' . Module::t('main', 'Select'),
+                    ]); ?>
+
                     <?= $form->field($model, 'publish_status')->dropDownList(Post::getStatuses()) ?>
 
                     <?php if ($model->type->show_category) : ?>
                         <?= $form->field($model, 'category_id')->dropDownList(Category::getList()) ?>
                     <?php endif; ?>
 
-                    <?= $form->field($model, 'views')->textInput() ?>
-
                     <?= $form->field($model, 'alias')->textInput(['maxlength' => 255, 'class' => 'form-control translit-output']) ?>
 
-                    <?= $form->field($model, 'thumbnails')->widget(InputFile::className(), [
-                        'filter'        => 'image',
-                        'template'      => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-                        'options'       => ['class' => 'form-control'],
-                        'buttonOptions' => ['class' => 'btn btn-default'],
-                        'buttonName' => '<span class="glyphicon glyphicon-picture"></span> ' . Module::t('main', 'Select'),
-                    ]); ?>
+                    <?= $form->field($model, 'views')->textInput() ?>
 
-                    <?= Html::submitButton($model->isNewRecord
-                        ? Module::t('main', 'Save')
-                        : Module::t('main', 'Update'),
-                        ['class' => $model->isNewRecord
-                            ? 'btn btn-success'
-                            : 'btn btn-primary']) ?>
+                    <?php if (!$model->isNewRecord) : ?>
+                        <p>
+                            <div class="btn-group">
+                                <?= Html::submitButton(
+                                    Module::t('main', 'Save'),
+                                    ['class' =>'btn btn-primary btn-sm']
+                                ) ?>
+                                <?= Html::a(
+                                    Module::t('main', 'View on the site'),
+                                    $this->context->getViewPostUrl($model),
+                                    ['class' => 'btn btn-warning btn-sm', 'target' => '_blank']
+                                ) ?>
+                            </div>
+                        </p>
+
+                        <?= Html::a(
+                            '<span class="glyphicon glyphicon-info-sign"></span> ' . Module::t('main', 'Detail info'),
+                            ['/blog/post/view', 'id' => $model->id],
+                            ['class' => 'btn btn-default btn-sm']
+                        ) ?>
+
+                    <?php else : ?>
+
+                        <?= Html::submitButton(Module::t('main', 'Save'), ['class' => 'btn btn-success btn-sm']) ?>
+
+                    <?php endif; ?>
+
                 </div>
                 <?php if (!$model->isNewRecord) : ?>
 
@@ -111,3 +138,9 @@ BlogAsset::register($this);
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+
+
+use pendalf89\blog\assets\PostAsset;
+PostAsset::register($this);?>
