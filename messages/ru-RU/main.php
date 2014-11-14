@@ -2,6 +2,7 @@
 
 return [
     'Blog' => 'Блог',
+    'Blog module' => 'Модуль «блог»',
     'Type' => 'Тип',
     'Post' => 'Запись',
     'Posts' => 'Записи',
@@ -61,4 +62,12 @@ return [
     'View on the site' => 'Посмотреть на сайте',
     'Detail info' => 'Детальная информация',
     'Last changes' => 'Последние изменения',
+    'Settings' => 'Настройки',
+    'Thumbnails settings' => 'Настройки миниатюр',
+    'Now using next thumbnails presets' => 'Используемые сейчас наборы миниатюр',
+    'Using as admin grid view thumbnail' => 'Используется как миниатюра в админке',
+    'If you change the thumbnails sizes, it is strongly recommended to make resize all thumbnails.' => 'Если вы изменили размеры миниатюр, строго рекомендуется сделать ресайз всех миниатюр.',
+    'Do resize thumbnails' => 'Сделать ресайз миниатюр',
+    'Thumbnails sizes has been resized successfully!' => 'Размеры миниатюр успешно изменены!',
+    'Do not forget every time you change thumbnails presets to make them resize.' => 'Не забывайте при каждом изменении предустановок миниатюр делать их ресайз.',
 ];

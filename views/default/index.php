@@ -17,7 +17,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 ?>
 
 <div class="blog-default-index">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Module::t('main', 'Blog module'); ?></h1>
 
     <?php if (Helper::isJustInstalled()) : ?>
         <?= Alert::widget([
@@ -30,7 +30,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
     <?php endif; ?>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <div class="text-center">
                 <h2>
@@ -43,7 +43,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <div class="text-center">
                 <h2>
@@ -56,7 +56,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <div class="text-center">
                 <h2>
@@ -65,6 +65,19 @@ $assetPath = BlogAsset::register($this)->baseUrl;
                 <?= Html::a(
                     Html::img($assetPath . '/images/post-types.png', ['alt' => 'Nightstand'])
                     , ['/blog/type/index']
+                ) ?>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="text-center">
+                <h2>
+                    <?= Html::a(Module::t('main', 'Settings'), ['/blog/default/settings']) ?>
+                </h2>
+                <?= Html::a(
+                    Html::img($assetPath . '/images/settings.png', ['alt' => 'Tools'])
+                    , ['/blog/default/settings']
                 ) ?>
             </div>
         </div>

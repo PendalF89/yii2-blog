@@ -42,6 +42,7 @@ class PostSearch extends Post
     public function search($params)
     {
         $query = Post::find();
+        $query->with('category', 'type');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
