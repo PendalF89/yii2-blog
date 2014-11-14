@@ -88,3 +88,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
+
+<?php
+
+use pendalf89\blog\widgets\ViewsCounterWidget;
+
+echo ViewsCounterWidget::widget(['model' => $model]);
