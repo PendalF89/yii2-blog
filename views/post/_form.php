@@ -68,6 +68,8 @@ BlogAsset::register($this);
                         'buttonName' => '<span class="glyphicon glyphicon-picture"></span> ' . Module::t('main', 'Select'),
                     ]); ?>
 
+                    <?= $form->field($model, 'thumbnail_alt') ?>
+
                     <?= $form->field($model, 'publish_status')->dropDownList(Post::getStatuses()) ?>
 
                     <?php if ($model->type->show_category) : ?>

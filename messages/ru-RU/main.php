@@ -45,6 +45,7 @@ return [
     'Publish Status' => 'Статус',
     'Thumbnail' => 'Миниатюра',
     'Thumbnails' => 'Миниатюры',
+    'Thumbnail alt tag' => 'Alt тэг миниатюры',
     'Created at' => 'Создан',
     'Updated at' => 'Обновлён',
     'Show Category' => 'Показывать категорию',

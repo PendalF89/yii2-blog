@@ -23,6 +23,7 @@ use yii\imagine\Image;
  * @property integer $views
  * @property integer $publish_status
  * @property string $thumbnails
+ * @property string $thumbnail_alt
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -55,7 +56,7 @@ class Post extends ActiveRecord
         return [
             [['category_id', 'type_id', 'publish_status', 'created_at', 'updated_at'], 'integer'],
             [['type_id', 'title', 'title_seo', 'alias', 'preview', 'content'], 'required'],
-            [['meta_description', 'preview', 'content', 'thumbnails', 'original_thumbnail'], 'string'],
+            [['meta_description', 'preview', 'content', 'thumbnails', 'original_thumbnail', 'thumbnail_alt'], 'string'],
             [['title', 'title_seo', 'alias'], 'string', 'max' => 255],
             ['category_id', 'required', 'on' => 'required_category'],
             ['thumbnails', 'default', 'value' => ''],
@@ -81,6 +82,7 @@ class Post extends ActiveRecord
             'publish_status' => Module::t('main', 'Publish Status'),
             'thumbnails' => Module::t('main', 'Thumbnails'),
             'original_thumbnail' => Module::t('main', 'Thumbnail'),
+            'thumbnail_alt' => Module::t('main', 'Thumbnail alt tag'),
             'created_at' => Module::t('main', 'Created at'),
             'updated_at' => Module::t('main', 'Updated at'),
         ];
