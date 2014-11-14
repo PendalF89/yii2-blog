@@ -36,7 +36,25 @@ Configuration:
         // from russian symbols to english on fly. Default false.
         'autoTranslit' => true, 
         // Some options for CKEditor. Default custom options.
-        'editorOptions' => [], 
+        'editorOptions' => [],
+        // callback function for create post view url. Have $model argument.
+        'viewPostUrlCallback' => function($model) {
+                return '/' . $model->alias;
+            },
+        // Thumbnails presets
+        'thumbnails' => [
+            'small' => [80, 50],
+            'medium' => [100, 100],
+            'large' => [250, 200],
+        ],
+        // Thumbnail preset, which using in admin view
+        'adminThumbnail' => 'small',
+        // Access rules array, using for yii\filters\AccessControl filter.
+        'accessRules' => [
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
     ],
 ],
 ```

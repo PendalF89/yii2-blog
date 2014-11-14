@@ -18,12 +18,7 @@ class Controller extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
+                'rules' => $this->module->accessRules,
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),

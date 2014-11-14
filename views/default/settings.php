@@ -37,7 +37,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
                 <?php foreach ($this->context->module->thumbnails as $name => $preset) : ?>
                     <li>
                         <strong><?= $name ?>:</strong> <?= $preset[0] .' x ' . $preset[1] ?>
-                        <?php if ($name === $this->context->module->gridViewThumbnail) : ?>
+                        <?php if ($name === $this->context->module->adminThumbnail) : ?>
                             <small class="text-muted">
                                 (<?= Helper::strtolower(Module::t('main', 'Using as admin grid view thumbnail')) ?>)
                             </small>

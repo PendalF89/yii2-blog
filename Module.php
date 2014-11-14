@@ -67,14 +67,24 @@ class Module extends \yii\base\Module
     public $viewPostUrlCallback = '';
 
     /**
-     * @var array thumbnails names and sizes, for example: ['small' => [100, 100], 'medium' => [250, 250]]
+     * @var array thumbnails names and sizes, for example: ['small' => [100, 100], 'medium' => [250, 250]].
      */
     public $thumbnails = [];
 
     /**
-     * @var string thumbnails preset using in admin grid view
+     * @var string thumbnail preset using in admin view.
      */
-    public $gridViewThumbnail = '';
+    public $adminThumbnail = '';
+
+    /**
+     * @var array access rules array, using for yii\filters\AccessControl filter.
+     */
+    public $accessRules = [
+        [
+            'allow' => true,
+            'roles' => ['@'],
+        ],
+    ];
 
     public function init()
     {

@@ -42,7 +42,7 @@ BlogAsset::register($this);
                 'attribute' => 'original_thumbnail',
                 'format' => 'html',
                 'value' => function($model) {
-                        $thumb = $model->getThumbnail($this->context->module->gridViewThumbnail);
+                        $thumb = $model->getThumbnail($this->context->module->adminThumbnail);
                         return !empty($thumb) ? Html::a(
                             Html::img($thumb),
                             ['/blog/post/update', 'id' => $model->id]
