@@ -47,7 +47,9 @@ Configuration:
             'medium' => [100, 100],
             'large' => [250, 200],
         ],
-        // Thumbnails base path. For advanced template it may be something like "@frontend/web"
+        // Thumbnails base path.
+        // For advanced template it may be something like '@frontend/web'
+        // Default '@webroot'.
         'thumbnailsBasePath' => '@webroot',
         // Thumbnail preset, which using in admin view
         'adminThumbnail' => 'small',
