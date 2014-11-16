@@ -175,11 +175,11 @@ class Post extends ActiveRecord
      * @param array $presets configuration for thumbnails like ['small' => [100, 100], 'medium' => [250, 250]]
      * @return string|boolean serialized thumbnails array
      */
-    public function createThumbnails(array $presets)
+    public function createThumbnails(array $presets, $thumbnailsBasePath)
     {
         $originalThumbPath = $this->original_thumbnail;
 
-        if (!file_exists(Yii::getAlias("@webroot$originalThumbPath"))) {
+        if (!file_exists(Yii::getAlias($thumbnailsBasePath . $originalThumbPath))) {
             return false;
         }
 
@@ -196,8 +196,8 @@ class Post extends ActiveRecord
             $height = $sizes[1];
             $relativePath = "$dirname/$filename-{$width}x{$height}.$extension";
 
-            Image::thumbnail("@webroot$originalThumbPath", $width, $height)
-                ->save(Yii::getAlias("@webroot$relativePath"));
+            Image::thumbnail($thumbnailsBasePath . $originalThumbPath, $width, $height)
+                ->save(Yii::getAlias($thumbnailsBasePath . $relativePath));
 
             $thumbnails[$presetName] = $relativePath;
         }
@@ -209,14 +209,14 @@ class Post extends ActiveRecord
      * Delete all thumbnails for this model except original thumbnail
      * @return array deleted thumbnails names
      */
-    public function deleteThumbnails()
+    public function deleteThumbnails($thumbnailsBasePath)
     {
         $deletedFileNames = [];
         $thumbnails = $this->getThumbnails();
         unset($thumbnails['original']);
 
         foreach ($thumbnails as $key => $path) {
-            $fileName = Yii::getAlias("@webroot$path");
+            $fileName = Yii::getAlias($thumbnailsBasePath . $path);
 
             if (file_exists($fileName) && unlink($fileName)) {
                 $deletedFileNames[] = $path;

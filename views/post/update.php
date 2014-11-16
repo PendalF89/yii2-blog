@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = Module::t('main', 'Update post');
                             $this->context->getViewPostUrl($model),
                             ['target' => '_blank']
                         ),
-                    'all posts' => Html::a(Helper::strtolower(Module::t('main', 'All posts')), '/blog/post/index'),
+                    'all posts' => Html::a(Helper::strtolower(Module::t('main', 'All posts')), ['/blog/post/index']),
                 ]),
             'showSeparator' => true,
         ]); ?>

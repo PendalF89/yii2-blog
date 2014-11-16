@@ -46,7 +46,7 @@ $assetPath = BlogAsset::register($this)->baseUrl;
                 <?php endforeach; ?>
             </ul>
             <p><?= Module::t('main', 'If you change the thumbnails sizes, it is strongly recommended to make resize all thumbnails.') ?></p>
-            <?= Html::a(Module::t('main', 'Do resize thumbnails'), '/blog/default/resize', ['class' => 'btn btn-danger']) ?>
+            <?= Html::a(Module::t('main', 'Do resize thumbnails'), ['/blog/default/resize'], ['class' => 'btn btn-danger']) ?>
         </div>
     </div>
 </div>

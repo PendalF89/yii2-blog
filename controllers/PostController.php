@@ -59,7 +59,7 @@ class PostController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             if (!empty($model->original_thumbnail)) {
-                $model->createThumbnails($this->module->thumbnails);
+                $model->createThumbnails($this->module->thumbnails, $this->module->thumbnailsBasePath);
             }
 
             if ($model->save()) {
@@ -89,15 +89,17 @@ class PostController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            $thumbnailsBasePath = $this->module->thumbnailsBasePath;
+
             if (!empty($model->thumbnails)) {
                 if (!$model->isThumbnailUseInOtherPosts()) {
-                    $model->deleteThumbnails();
+                    $model->deleteThumbnails($thumbnailsBasePath);
                 }
                 $model->thumbnails = '';
             }
 
             if (!empty($model->original_thumbnail)) {
-                $model->createThumbnails($this->module->thumbnails);
+                $model->createThumbnails($this->module->thumbnails, $thumbnailsBasePath);
             }
 
             if ($model->save()) {
@@ -120,7 +122,13 @@ class PostController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if (!$model->isThumbnailUseInOtherPosts()) {
+            $model->deleteThumbnails($this->module->thumbnailsBasePath);
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }

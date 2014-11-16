@@ -77,6 +77,11 @@ class Module extends \yii\base\Module
     public $adminThumbnail = '';
 
     /**
+     * @var string thumbnails base path. For advanced template it may be something like "@frontend/web"
+     */
+    public $thumbnailsBasePath = '@webroot';
+
+    /**
      * @var array access rules array, using for yii\filters\AccessControl filter.
      */
     public $accessRules = [

@@ -24,10 +24,11 @@ class DefaultController extends Controller
     {
         $models = Post::find()->onCondition(['!=', 'thumbnails', ''])->all();
         $presets = $this->module->thumbnails;
+        $thumbnailsBasePath  = $this->module->thumbnailsBasePath;
 
         foreach ($models as $model) {
-            $model->deleteThumbnails();
-            $model->createThumbnails($presets);
+            $model->deleteThumbnails($thumbnailsBasePath);
+            $model->createThumbnails($presets, $thumbnailsBasePath);
             $model->save();
         }
 

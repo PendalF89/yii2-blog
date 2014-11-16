@@ -29,7 +29,7 @@ use kartik\widgets\Typeahead;
 
             <?= Html::submitButton('<span class="glyphicon glyphicon-search"></span> '
                 . Module::t('main', 'Search'), ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('<span class="glyphicon glyphicon-remove text-danger"></span>', '/blog/post/index', ['class' => 'btn btn-default']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-remove text-danger"></span>', ['/blog/post/index'], ['class' => 'btn btn-default']) ?>
 
         <?php ActiveForm::end(); ?>
 

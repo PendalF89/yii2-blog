@@ -47,6 +47,8 @@ Configuration:
             'medium' => [100, 100],
             'large' => [250, 200],
         ],
+        // Thumbnails base path. For advanced template it may be something like "@frontend/web"
+        'thumbnailsBasePath' => '@webroot',
         // Thumbnail preset, which using in admin view
         'adminThumbnail' => 'small',
         // Access rules array, using for yii\filters\AccessControl filter.
