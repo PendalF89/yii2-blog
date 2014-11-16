@@ -209,14 +209,14 @@ class Post extends ActiveRecord
      * Delete all thumbnails for this model except original thumbnail
      * @return array deleted thumbnails names
      */
-    public function deleteThumbnails()
+    public function deleteThumbnails($thumbnailsBasePath)
     {
         $deletedFileNames = [];
         $thumbnails = $this->getThumbnails();
         unset($thumbnails['original']);
 
         foreach ($thumbnails as $key => $path) {
-            $fileName = Yii::getAlias("@webroot$path");
+            $fileName = Yii::getAlias($thumbnailsBasePath . $path);
 
             if (file_exists($fileName) && unlink($fileName)) {
                 $deletedFileNames[] = $path;
