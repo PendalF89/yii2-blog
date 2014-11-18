@@ -112,6 +112,10 @@ class Module extends \yii\base\Module
 
     public static function t($category, $message, $params = [], $language = null)
     {
+        if (!isset(Yii::$app->i18n->translations['modules/blog/*'])) {
+            return $message;
+        }
+
         return Yii::t("modules/blog/$category", $message, $params, $language);
     }
 
