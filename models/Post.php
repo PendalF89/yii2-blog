@@ -7,7 +7,6 @@ use pendalf89\blog\Module;
 use pendalf89\filemanager\behaviors\MediafileBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\imagine\Image;
 
 /**
  * This is the model class for table "blog_post".
@@ -23,8 +22,7 @@ use yii\imagine\Image;
  * @property string $content
  * @property integer $views
  * @property integer $publish_status
- * @property string $thumbnails
- * @property string $thumbnail_alt
+ * @property string $thumbnail
  * @property integer $created_at
  * @property integer $updated_at
  *

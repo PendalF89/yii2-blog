@@ -5,6 +5,7 @@ namespace pendalf89\blog\controllers;
 use Yii;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\models\PostSearch;
+use pendalf89\filemanager\models\Mediafile;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -80,6 +81,10 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $mediafile = Mediafile::findOne($model->thumbnail);
+            $mediafile->removeOwner($model->id, $model->className(), 'thumbnail');
+            $mediafile->addOwner($model->id, $model->className(), 'thumbnail');
+
             Yii::$app->session->setFlash('postSaved');
         }
 
