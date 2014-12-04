@@ -19,8 +19,6 @@ class m141107_230742_create_blog_post_table extends Migration
             'content' => Schema::TYPE_TEXT . ' NOT NULL',
             'views' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0',
             'publish_status' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0',
-            'thumbnails' => Schema::TYPE_TEXT,
-            'thumbnail_alt' => Schema::TYPE_TEXT,
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER,
         ]);

@@ -10,3 +10,7 @@
     white-space: nowrap;
     vertical-align: middle;
 }
+
+#post-thumbnail {
+    display: none;
+}

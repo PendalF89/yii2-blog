@@ -6,7 +6,6 @@ use Yii;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\models\PostSearch;
 use yii\web\NotFoundHttpException;
-use yii\imagine\Image;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -56,16 +55,9 @@ class PostController extends Controller
         $model = new Post();
         $model->load(Yii::$app->request->get());
 
-        if ($model->load(Yii::$app->request->post())) {
-
-            if (!empty($model->original_thumbnail)) {
-                $model->createThumbnails($this->module->thumbnails, $this->module->thumbnailsBasePath);
-            }
-
-            if ($model->save()) {
-                Yii::$app->session->setFlash('postSaved');
-                return $this->redirect(['update', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('postSaved');
+            return $this->redirect(['update', 'id' => $model->id]);
         }
 
         if ($model->type->show_category) {
@@ -87,24 +79,8 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-
-            $thumbnailsBasePath = $this->module->thumbnailsBasePath;
-
-            if (!empty($model->thumbnails)) {
-                if (!$model->isThumbnailUseInOtherPosts()) {
-                    $model->deleteThumbnails($thumbnailsBasePath);
-                }
-                $model->thumbnails = '';
-            }
-
-            if (!empty($model->original_thumbnail)) {
-                $model->createThumbnails($this->module->thumbnails, $thumbnailsBasePath);
-            }
-
-            if ($model->save()) {
-                Yii::$app->session->setFlash('postSaved');
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('postSaved');
         }
 
         if ($model->type->show_category) {
@@ -123,11 +99,6 @@ class PostController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-
-        if (!$model->isThumbnailUseInOtherPosts()) {
-            $model->deleteThumbnails($this->module->thumbnailsBasePath);
-        }
-
         $model->delete();
 
         return $this->redirect(['index']);

@@ -12,8 +12,6 @@ use yii\web\AssetBundle;
 class BlogAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/pendalf89/yii2-blog/assets/source';
-    public $css = [
-        'css/style.css',
-    ];
+    public $css = ['css/main.css'];
     public $depends = ['yii\bootstrap\BootstrapAsset'];
 }

@@ -79,12 +79,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
-
-    <?php if ($thumbnails = $model->getThumbnails()) : ?>
-        <h2><?= Module::t('main', 'Thumbnails') ?>:</h2>
-        <?php foreach ($thumbnails as $preset => $thumbnail) : ?>
-            <h3><?= $preset ?></h3>
-            <?= Html::img($thumbnail) ?>
-        <?php endforeach; ?>
-    <?php endif; ?>
 </div>

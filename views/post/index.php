@@ -27,7 +27,7 @@ BlogAsset::register($this);
         <div class="col-md-4">
             <?= $this->render('_new', ['model' => $model]) ?>
         </div>
-        <?php if ($titles = Post::getTitlesList()) : ?>
+        <?php if ($titles = Post::getTitles()) : ?>
             <div class="col-md-4">
                 <?php echo $this->render('_search', ['model' => $searchModel, 'titles' => $titles]); ?>
             </div>
@@ -38,17 +38,17 @@ BlogAsset::register($this);
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            [
-                'attribute' => 'original_thumbnail',
-                'format' => 'html',
-                'value' => function($model) {
-                        $thumb = $model->getThumbnail($this->context->module->adminThumbnail);
-                        return !empty($thumb) ? Html::a(
-                            Html::img($thumb),
-                            ['/blog/post/update', 'id' => $model->id]
-                        ) : '';
-                    },
-            ],
+//            [
+//                'attribute' => 'original_thumbnail',
+//                'format' => 'html',
+//                'value' => function($model) {
+//                        $thumb = $model->getThumbnail($this->context->module->adminThumbnail);
+//                        return !empty($thumb) ? Html::a(
+//                            Html::img($thumb),
+//                            ['/blog/post/update', 'id' => $model->id]
+//                        ) : '';
+//                    },
+//            ],
             [
                 'attribute' => 'title',
                 'format' => 'html',
@@ -74,9 +74,8 @@ BlogAsset::register($this);
                 'attribute' => 'meta_description',
                 'format' => 'html',
                 'value' => function($model) {
-                        $metaDecriptionStatus = !empty($model->meta_description)
-                            ? 1 : 0;
-                        return Helper::booleanIconChoiceArray()[$metaDecriptionStatus];
+                        $metaDescriptionStatus = !empty($model->meta_description) ? 1 : 0;
+                        return Helper::booleanIconChoiceArray()[$metaDescriptionStatus];
                     },
                 'filter' => ['yes' => Yii::t('yii', 'Yes'), 'no' => Yii::t('yii', 'No')],
                 'headerOptions' => ['class' => 'text-center'],

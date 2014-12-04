@@ -12,8 +12,6 @@ use yii\web\AssetBundle;
 class TranslitAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/pendalf89/yii2-blog/assets/source/js';
-    public $depends = [
-        'yii\web\JqueryAsset',
-    ];
     public $js = ['translit.js'];
+    public $depends = ['yii\web\JqueryAsset'];
 }

@@ -67,21 +67,6 @@ class Module extends \yii\base\Module
     public $viewPostUrlCallback = '';
 
     /**
-     * @var array thumbnails names and sizes, for example: ['small' => [100, 100], 'medium' => [250, 250]].
-     */
-    public $thumbnails = [];
-
-    /**
-     * @var string thumbnail preset using in admin view.
-     */
-    public $adminThumbnail = '';
-
-    /**
-     * @var string thumbnails base path. For advanced template it may be something like "@frontend/web"
-     */
-    public $thumbnailsBasePath = '@webroot';
-
-    /**
      * @var array access rules array, using for yii\filters\AccessControl filter.
      */
     public $accessRules = [

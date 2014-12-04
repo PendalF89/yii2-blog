@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use pendalf89\blog\models\Category;
 use pendalf89\blog\models\Post;
+use pendalf89\blog\assets\BlogAsset;
 use pendalf89\blog\Module;
 use mihaildev\elfinder\ElFinder;
 use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\InputFile;
-use pendalf89\blog\assets\BlogAsset;
+use pendalf89\filemanager\widgets\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
@@ -53,22 +53,15 @@ BlogAsset::register($this);
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <div id="thumbnail-container">
-                        <?php if (!empty($model->original_thumbnail)) : ?>
-                            <?= Html::img($model->original_thumbnail, ['style' => 'width: 100%']) ?>
-                        <?php endif; ?>
-                    </div>
+                    <div id="thumbnail-container"></div>
 
-                    <?= $form->field($model, 'original_thumbnail')->widget(InputFile::className(), [
-                        'language' => substr(Yii::$app->language, 0, 2),
-                        'filter' => 'image',
-                        'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-                        'options' => ['class' => 'form-control'],
-                        'buttonOptions' => ['class' => 'btn btn-default'],
-                        'buttonName' => '<span class="glyphicon glyphicon-picture"></span> ' . Module::t('main', 'Select'),
-                    ]); ?>
-
-                    <?= $form->field($model, 'thumbnail_alt') ?>
+                    <?= $form->field($model, 'thumbnail')->widget(FileInput::className(), [
+                        'thumb' => 'original',
+                        'template' => '<div class="input-group">{input}{button}</div>',
+                        'pasteData' => FileInput::DATA_ID,
+                        'buttonName' => Module::t('main', 'Set thumbnail'),
+                        'imageContainer' => '#thumbnail-container',
+                    ]) ?>
 
                     <?= $form->field($model, 'publish_status')->dropDownList(Post::getStatuses()) ?>
 
@@ -140,9 +133,3 @@ BlogAsset::register($this);
     <?php ActiveForm::end(); ?>
 
 </div>
-
-<?php
-
-
-use pendalf89\blog\assets\PostAsset;
-PostAsset::register($this);?>

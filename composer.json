@@ -14,6 +14,7 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-imagine": "*",
         "pendalf89/yii2-tree": "*",
+        "pendalf89/yii2-filemanager": "*",
         "thiagotalma/yii2-jstree": "*",
         "MihailDev/yii2-elfinder": "*",
         "mihaildev/yii2-ckeditor": "*",
