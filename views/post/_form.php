@@ -6,9 +6,10 @@ use pendalf89\blog\models\Category;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\assets\BlogAsset;
 use pendalf89\blog\Module;
-use mihaildev\elfinder\ElFinder;
-use mihaildev\ckeditor\CKEditor;
 use pendalf89\filemanager\widgets\FileInput;
+use pendalf89\filemanager\widgets\TinyMCE;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
@@ -33,15 +34,36 @@ BlogAsset::register($this);
                     <?= $form->field($model, 'title_seo')->textInput(['maxlength' => 255,
                         'class' => 'form-control duplicate-output']) ?>
 
-                    <?= $form->field($model, 'content')->widget(CKEditor::className(), [
-                        //'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
-                        'editorOptions' => [
-                            'filebrowserBrowseUrl' => Yii::$app->urlManager->createUrl('/filemanager/file/index')
+                    <?= $form->field($model, 'content')->widget(TinyMCE::className(), [
+                        'clientOptions' => [
+                            'language' => 'ru',
+                            'menubar' => false,
+                            'height' => 500,
+                            'image_dimensions' => false,
+                            'plugins' => [
+                                'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
+                            ],
+                            'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+                            'callbackBeforeInsert' => 'function(e, data){
+                                console.log(data);
+                            }'
                         ],
                     ]); ?>
 
-                    <?= $form->field($model, 'preview')->widget(CKEditor::className(), [
-                        //'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                    <?= $form->field($model, 'preview')->widget(TinyMCE::className(), [
+                        'clientOptions' => [
+                            'language' => 'ru',
+                            'menubar' => false,
+                            'height' => 500,
+                            'image_dimensions' => false,
+                            'plugins' => [
+                                'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
+                            ],
+                            'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+                            'callbackBeforeInsert' => 'function(e, data){
+                                console.log(data);
+                            }'
+                        ],
                     ]); ?>
 
                     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
