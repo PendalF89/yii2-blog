@@ -34,11 +34,14 @@ BlogAsset::register($this);
                         'class' => 'form-control duplicate-output']) ?>
 
                     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
-                        'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                        //'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                        'editorOptions' => [
+                            'filebrowserBrowseUrl' => Yii::$app->urlManager->createUrl('/filemanager/file/index')
+                        ],
                     ]); ?>
 
                     <?= $form->field($model, 'preview')->widget(CKEditor::className(), [
-                        'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
+                        //'editorOptions' => ElFinder::ckeditorOptions('elfinder', $this->context->module->editorOptions),
                     ]); ?>
 
                     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
@@ -53,11 +56,13 @@ BlogAsset::register($this);
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <div id="thumbnail-container"></div>
+                    <div id="thumbnail-container">
+                        <?= $model->getThumbnailImage('original') ?>
+                    </div>
 
                     <?= $form->field($model, 'thumbnail')->widget(FileInput::className(), [
                         'thumb' => 'original',
-                        'template' => '<div class="input-group">{input}{button}</div>',
+                        'template' => '<div class="input-group">{input}<span class="btn-group">{button}{reset-button}</span></div>',
                         'pasteData' => FileInput::DATA_ID,
                         'buttonName' => Module::t('main', 'Set thumbnail'),
                         'imageContainer' => '#thumbnail-container',

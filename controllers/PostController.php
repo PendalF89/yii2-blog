@@ -81,10 +81,6 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $mediafile = Mediafile::findOne($model->thumbnail);
-            $mediafile->removeOwner($model->id, $model->className(), 'thumbnail');
-            $mediafile->addOwner($model->id, $model->className(), 'thumbnail');
-
             Yii::$app->session->setFlash('postSaved');
         }
 

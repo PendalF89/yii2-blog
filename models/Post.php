@@ -5,8 +5,10 @@ namespace pendalf89\blog\models;
 use Yii;
 use pendalf89\blog\Module;
 use pendalf89\filemanager\behaviors\MediafileBehavior;
+use pendalf89\filemanager\models\Mediafile;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "blog_post".
@@ -35,9 +37,14 @@ class Post extends ActiveRecord
     const STATUS_DRAFT = 0;
 
     /**
-     * @var mixed mediafile
+     * @var string thumbnail id
      */
     public $thumbnail;
+
+    /**
+     * @var Mediafile
+     */
+    private $thumbnail_model = null;
 
     /**
      * @inheritdoc
@@ -97,14 +104,31 @@ class Post extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
                 ],
             ],
-//            'mediafile' => [
-//                'class' => MediafileBehavior::className(),
-//                'attributes' => [
-//                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
-//                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
-//                ],
-//            ]
+            'mediafile' => [
+                'class' => MediafileBehavior::className(),
+                'name' => 'post',
+                'attributes' => [
+                    'thumbnail',
+                ],
+            ]
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        $this->thumbnail = $this->getThumbnailModel()->id;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->thumbnail_model = null;
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**
@@ -138,6 +162,48 @@ class Post extends ActiveRecord
     public function getLastChangesTimestamp()
     {
         return !empty($this->updated_at) ? $this->updated_at : $this->created_at;
+    }
+
+    /**
+     * @return bool|Mediafile
+     */
+    public function getThumbnailModel()
+    {
+        if (!empty($this->thumbnail_model)) {
+            return $this->thumbnail_model;
+        }
+
+        return $this->thumbnail_model = Mediafile::loadOneByOwner('post', $this->id, 'thumbnail');
+    }
+
+    /**
+     * Thumbnail url by alias
+     *
+     * @param string $alias thumbnail alias
+     * @return string thumbnail url
+     */
+    public function getThumbnailUrl($alias)
+    {
+        $thumbnail = $this->getThumbnailModel();
+        return $thumbnail ? $thumbnail->getThumbUrl($alias) : '';
+    }
+
+    /**
+     * Html thumbnail image tag
+     *
+     * @param string $alias thumbnail alias
+     * @param array $options html options
+     * @return string Html image tag
+     */
+    public function getThumbnailImage($alias, $options=[])
+    {
+        $thumbnail = $this->getThumbnailModel();
+
+        if (empty($thumbnail)) {
+            return '';
+        }
+
+        return $thumbnail->getThumbImage($alias, $options);
     }
 
     /**
