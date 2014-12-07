@@ -8,7 +8,6 @@ use pendalf89\filemanager\behaviors\MediafileBehavior;
 use pendalf89\filemanager\models\Mediafile;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\helpers\Html;
 
 /**
  * This is the model class for table "blog_post".
