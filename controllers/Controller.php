@@ -29,13 +29,4 @@ class Controller extends \yii\web\Controller
             ],
         ];
     }
-
-    public function beforeAction($action)
-    {
-        if (defined('YII_DEBUG') && YII_DEBUG) {
-            Yii::$app->assetManager->forceCopy = true;
-        }
-
-        return parent::beforeAction($action);
-    }
 }

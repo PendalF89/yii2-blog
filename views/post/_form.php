@@ -8,8 +8,6 @@ use pendalf89\blog\assets\BlogAsset;
 use pendalf89\blog\Module;
 use pendalf89\filemanager\widgets\FileInput;
 use pendalf89\filemanager\widgets\TinyMCE;
-use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
@@ -35,35 +33,11 @@ BlogAsset::register($this);
                         'class' => 'form-control duplicate-output']) ?>
 
                     <?= $form->field($model, 'content')->widget(TinyMCE::className(), [
-                        'clientOptions' => [
-                            'language' => 'ru',
-                            'menubar' => false,
-                            'height' => 500,
-                            'image_dimensions' => false,
-                            'plugins' => [
-                                'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
-                            ],
-                            'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
-                            'callbackBeforeInsert' => 'function(e, data){
-                                console.log(data);
-                            }'
-                        ],
+                        'clientOptions' => $this->context->module->editorOptions,
                     ]); ?>
 
                     <?= $form->field($model, 'preview')->widget(TinyMCE::className(), [
-                        'clientOptions' => [
-                            'language' => 'ru',
-                            'menubar' => false,
-                            'height' => 500,
-                            'image_dimensions' => false,
-                            'plugins' => [
-                                'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
-                            ],
-                            'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
-                            'callbackBeforeInsert' => 'function(e, data){
-                                console.log(data);
-                            }'
-                        ],
+                        'clientOptions' => $this->context->module->editorOptions,
                     ]); ?>
 
                     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
@@ -78,9 +52,7 @@ BlogAsset::register($this);
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <div id="thumbnail-container">
-                        <?= $model->getThumbnailImage('original') ?>
-                    </div>
+                    <div id="thumbnail-container"><?= $model->getThumbnailImage('original') ?></div>
 
                     <?= $form->field($model, 'thumbnail')->widget(FileInput::className(), [
                         'thumb' => 'original',

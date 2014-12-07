@@ -51,4 +51,4 @@ Configuration:
 ],
 ```
 
-Don't forget configure controllerMap for ElFinder. See how to do this on [MihailDev/yii2-elfinder](https://github.com/MihailDev/yii2-elfinder) extension page.
+Don't forget configure [PendalF89/yii2-filemanager](https://github.com/PendalF89/yii2-filemanager) extension.

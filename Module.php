@@ -22,43 +22,18 @@ class Module extends \yii\base\Module
     public $autoTranslit = false;
 
     /**
-     * Documentation here: http://ckeditor.com/latest/samples/plugins/toolbar/toolbar.html
-     *
-     * @var array options for CKEDitor editor.
+     * @var array options for TinyMCE editor.
+     * @see http://www.tinymce.com/wiki.php/Plugins
      */
     public $editorOptions = [
-        'toolbar' => [
-            ['items' => [
-                'Source',
-                '-',
-                'Undo',
-                'Redo',
-                'Bold',
-                'Italic',
-                'Underline',
-                'Strike',
-                '-',
-                'RemoveFormat',
-                'NumberedList',
-                'BulletedList',
-                '-',
-                'JustifyLeft',
-                'JustifyCenter',
-                'JustifyRight',
-                'JustifyBlock',
-                '-',
-                'Blockquote',
-                '-',
-                'Link',
-                'Unlink',
-                '-',
-                'Image',
-                'Table',
-                'ShowBlocks',
-                'PasteFromWord',
-                'Format',
-            ]],
+        'language' => 'ru',
+        'menubar' => false,
+        'height' => 500,
+        'image_dimensions' => false,
+        'plugins' => [
+            'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code contextmenu table',
         ],
+        'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
     ];
 
     /**
