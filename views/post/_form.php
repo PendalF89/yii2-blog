@@ -18,7 +18,9 @@ BlogAsset::register($this);
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'enableClientValidation' => false,
+    ]); ?>
 
     <div class="row">
         <!--Left column START-->
