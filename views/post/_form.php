@@ -7,7 +7,7 @@ use pendalf89\blog\models\Post;
 use pendalf89\blog\assets\BlogAsset;
 use pendalf89\blog\Module;
 use pendalf89\filemanager\widgets\FileInput;
-use pendalf89\filemanager\widgets\TinyMCE;
+use pendalf89\filemanager\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */
@@ -34,11 +34,11 @@ BlogAsset::register($this);
                     <?= $form->field($model, 'title_seo')->textInput(['maxlength' => 255,
                         'class' => 'form-control duplicate-output']) ?>
 
-                    <?= $form->field($model, 'content')->widget(TinyMCE::className(), [
+                    <?= $form->field($model, 'content')->widget(TinyMce::className(), [
                         'clientOptions' => $this->context->module->editorOptions,
                     ]); ?>
 
-                    <?= $form->field($model, 'preview')->widget(TinyMCE::className(), [
+                    <?= $form->field($model, 'preview')->widget(TinyMce::className(), [
                         'clientOptions' => $this->context->module->editorOptions,
                     ]); ?>
 
