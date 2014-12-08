@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use pendalf89\blog\models\Post;
+use yii\db\Query;
 
 /**
  * PostSearch represents the model behind the search form about `pendalf89\blog\models\Post`.
