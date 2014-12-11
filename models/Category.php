@@ -61,6 +61,18 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get published posts
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getPublishedPosts()
+    {
+        return PostSearch::find()
+            ->joinWith('category')
+            ->where(['publish_status' => Post::STATUS_PUBLISHED, 'blog_category.id' => $this->id])
+            ->all();
+    }
+
+    /**
      * @return null|string parent title
      */
     public function getParentTitle()
