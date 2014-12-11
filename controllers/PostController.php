@@ -13,6 +13,8 @@ use yii\web\NotFoundHttpException;
  */
 class PostController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
      * Lists all Post models.
      * @return mixed
