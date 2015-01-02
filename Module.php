@@ -41,16 +41,6 @@ class Module extends \yii\base\Module
      */
     public $viewPostUrlCallback = '';
 
-    /**
-     * @var array access rules array, using for yii\filters\AccessControl filter.
-     */
-    public $accessRules = [
-        [
-            'allow' => true,
-            'roles' => ['@'],
-        ],
-    ];
-
     public function init()
     {
         parent::init();

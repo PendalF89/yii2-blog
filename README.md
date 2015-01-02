@@ -41,12 +41,6 @@ Configuration:
         'viewPostUrlCallback' => function($model) {
                 return '/' . $model->alias;
             },
-        // Access rules array, using for yii\filters\AccessControl filter.
-        'accessRules' => [
-            [
-                'allow' => true,
-                'roles' => ['@'],
-            ],
     ],
 ],
 ```
