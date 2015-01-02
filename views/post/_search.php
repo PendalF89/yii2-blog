@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use pendalf89\blog\models\Post;
 use pendalf89\blog\Module;
-use kartik\widgets\Typeahead;
+use kartik\typeahead\Typeahead;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\PostSearch */

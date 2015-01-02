@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use pendalf89\blog\Module;
 use pendalf89\blog\helpers\Helper;
-use kartik\widgets\Alert;
+use kartik\alert\Alert;
 
 /* @var $this yii\web\View */
 /* @var $model pendalf89\blog\models\Post */

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use pendalf89\blog\Module;
 use pendalf89\blog\helpers\Helper;
 use pendalf89\blog\assets\BlogAsset;
-use kartik\widgets\Alert;
+use kartik\alert\Alert;
 
 /* @var $this yii\web\View */
 /* @var $searchModel pendalf89\blog\models\TypeSearch */
