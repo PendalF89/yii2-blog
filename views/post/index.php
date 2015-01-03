@@ -14,7 +14,7 @@ use pendalf89\blog\assets\BlogAsset;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Module::t('main', 'Posts');
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 BlogAsset::register($this);
@@ -45,7 +45,7 @@ BlogAsset::register($this);
 //                        $thumb = $model->getThumbnail($this->context->module->adminThumbnail);
 //                        return !empty($thumb) ? Html::a(
 //                            Html::img($thumb),
-//                            ['/blog/post/update', 'id' => $model->id]
+//                            ['post/update', 'id' => $model->id]
 //                        ) : '';
 //                    },
 //            ],
@@ -53,7 +53,7 @@ BlogAsset::register($this);
                 'attribute' => 'title',
                 'format' => 'html',
                 'value' => function($model) {
-                        return Html::a($model->title, ['/blog/post/update', 'id' => $model->id]);
+                        return Html::a($model->title, ['post/update', 'id' => $model->id]);
                     },
             ],
             [

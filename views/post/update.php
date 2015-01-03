@@ -9,7 +9,7 @@ use kartik\alert\Alert;
 /* @var $model pendalf89\blog\models\Post */
 
 $this->title = Module::t('main', 'Update post “{title}”', ['title' => $model->title]);
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Module::t('main', 'Update post');
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = Module::t('main', 'Update post');
                             $this->context->getViewPostUrl($model),
                             ['target' => '_blank']
                         ),
-                    'all posts' => Html::a(Helper::strtolower(Module::t('main', 'All posts')), ['/blog/post/index']),
+                    'all posts' => Html::a(Helper::strtolower(Module::t('main', 'All posts')), ['post/index']),
                 ]),
             'showSeparator' => true,
         ]); ?>

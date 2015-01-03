@@ -8,7 +8,7 @@ use pendalf89\tree\TreeWidget;
 /* @var $model pendalf89\blog\models\Category */
 
 $this->title = Module::t('main', 'Category tree');
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

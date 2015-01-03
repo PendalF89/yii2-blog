@@ -10,7 +10,7 @@ use pendalf89\blog\helpers\Helper;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Module::t('main', 'Post types');
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="type-index">

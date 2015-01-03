@@ -91,7 +91,7 @@ BlogAsset::register($this);
 
                         <?= Html::a(
                             '<span class="glyphicon glyphicon-info-sign"></span> ' . Module::t('main', 'Detail info'),
-                            ['/blog/post/view', 'id' => $model->id],
+                            ['post/view', 'id' => $model->id],
                             ['class' => 'btn btn-default btn-sm']
                         ) ?>
 

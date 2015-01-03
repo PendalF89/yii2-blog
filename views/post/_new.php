@@ -14,7 +14,7 @@ use pendalf89\blog\models\Type;
     <div class="panel-heading"><?= Module::t('main', 'New post') ?></div>
     <div class="panel-body">
 
-<!--        --><?//= Html::beginForm('/blog/post/create', 'get') ?>
+<!--        --><?//= Html::beginForm('post/create', 'get') ?>
 <!---->
 <!--            --><?//= Html::dropDownList('type', null, Type::getList()) ?>
 <!---->
@@ -25,7 +25,7 @@ use pendalf89\blog\models\Type;
 <!--        --><?//= Html::endForm() ?>
 
         <?php $form = ActiveForm::begin([
-            'action' => ['/blog/post/create'],
+            'action' => ['post/create'],
             'method' => 'get',
             'layout' => 'inline'
         ]); ?>

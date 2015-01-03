@@ -11,7 +11,7 @@ use pendalf89\blog\assets\DuplicateAsset;
 /* @var $model pendalf89\blog\models\Post */
 
 $this->title = Module::t('main', 'New {type}', ['type' => Helper::strtolower($model->type->title)]);
-$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['/blog/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Blog'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('main', 'Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 

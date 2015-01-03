@@ -34,11 +34,11 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 
             <div class="text-center">
                 <h2>
-                    <?= Html::a(Module::t('main', 'Posts'), ['/blog/post/index']) ?>
+                    <?= Html::a(Module::t('main', 'Posts'), ['post/index']) ?>
                 </h2>
                 <?= Html::a(
                     Html::img($assetPath . '/images/posts.png', ['alt' => 'Notepad'])
-                    , ['/blog/post/index']
+                    , ['post/index']
                 ) ?>
             </div>
         </div>
@@ -47,11 +47,11 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 
             <div class="text-center">
                 <h2>
-                    <?= Html::a(Module::t('main', 'Categories'), ['/blog/category/index']) ?>
+                    <?= Html::a(Module::t('main', 'Categories'), ['category/index']) ?>
                 </h2>
                 <?= Html::a(
                     Html::img($assetPath . '/images/categories.png', ['alt' => 'Categories'])
-                    , ['/blog/category/index']
+                    , ['category/index']
                 ) ?>
             </div>
         </div>
@@ -60,11 +60,11 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 
             <div class="text-center">
                 <h2>
-                    <?= Html::a(Module::t('main', 'Post types'), ['/blog/type/index']) ?>
+                    <?= Html::a(Module::t('main', 'Post types'), ['type/index']) ?>
                 </h2>
                 <?= Html::a(
                     Html::img($assetPath . '/images/post-types.png', ['alt' => 'Nightstand'])
-                    , ['/blog/type/index']
+                    , ['type/index']
                 ) ?>
             </div>
         </div>
@@ -73,11 +73,11 @@ $assetPath = BlogAsset::register($this)->baseUrl;
 <!---->
 <!--            <div class="text-center">-->
 <!--                <h2>-->
-<!--                    --><?//= Html::a(Module::t('main', 'Settings'), ['/blog/default/settings']) ?>
+<!--                    --><?//= Html::a(Module::t('main', 'Settings'), ['default/settings']) ?>
 <!--                </h2>-->
 <!--                --><?//= Html::a(
 //                    Html::img($assetPath . '/images/settings.png', ['alt' => 'Tools'])
-//                    , ['/blog/default/settings']
+//                    , ['default/settings']
 //                ) ?>
 <!--            </div>-->
 <!--        </div>-->
