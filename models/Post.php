@@ -128,6 +128,7 @@ class Post extends ActiveRecord
     public function afterFind()
     {
         $this->thumbnail = $this->getThumbnailModel()->id;
+        parent::afterFind();
     }
 
     /**
