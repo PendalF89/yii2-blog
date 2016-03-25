@@ -125,15 +125,6 @@ class Post extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterFind()
-    {
-        $this->thumbnail = $this->getThumbnailModel()->id;
-        parent::afterFind();
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function afterSave($insert, $changedAttributes)
     {
         $this->thumbnail_model = null;
