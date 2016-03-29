@@ -127,6 +127,74 @@ BlogAsset::register($this);
 
                 <?php endif; ?>
             </div>
+
+	        <div class="panel panel-default">
+		        <div class="panel-body">
+
+			        <!-- Button trigger modal -->
+			        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-table">
+				        HTML-каркас таблицы
+			        </button>
+			        <!-- Modal -->
+			        <div class="modal fade" id="modal-table" tabindex="-1" role="dialog">
+				        <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+						        <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">HTML-каркас таблицы</h4>
+						        </div>
+						        <div class="modal-body">
+							        <p>Скопируйте приведённый ниже каркас и вставьте в HTML-код статьи.</p>
+<pre>
+<?= htmlspecialchars('<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Заголовок1</th>
+        <th>Заголовок2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Содержимое1</td>
+        <td>Содержимое2</td>
+    </tr>
+    <tr>
+        <td>Содержимое3</td>
+        <td>Содержимое4</td>
+    </tr>
+    </tbody>
+</table>') ?>
+</pre>
+							        <p>Этот код выведет таблицу:</p>
+							        <table class="table table-bordered">
+								        <thead>
+								        <tr>
+									        <th>Заголовок1</th>
+									        <th>Заголовок2</th>
+								        </tr>
+								        </thead>
+								        <tbody>
+								        <tr>
+									        <td>Содержимое1</td>
+									        <td>Содержимое2</td>
+								        </tr>
+								        <tr>
+									        <td>Содержимое3</td>
+									        <td>Содержимое4</td>
+								        </tr>
+								        </tbody>
+							        </table>
+						        </div>
+						        <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+						        </div>
+					        </div>
+				        </div>
+			        </div>
+
+		        </div>
+	        </div>
+
         </div>
         <!--Right column END-->
     </div>
