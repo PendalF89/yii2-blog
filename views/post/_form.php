@@ -14,6 +14,10 @@ use pendalf89\filemanager\widgets\TinyMCE;
 /* @var $form yii\widgets\ActiveForm */
 
 BlogAsset::register($this);
+
+if ($thumbModel = $model->getThumbnailModel()) {
+	$model->thumbnail = $thumbModel->id;
+}
 ?>
 
 <div class="post-form">
